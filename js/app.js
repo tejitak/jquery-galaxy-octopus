@@ -1,4 +1,4 @@
-$ = require("jquery");
+var $ = require("jquery");
 
 // register requestAnimationFrame to global
 (function (w, r) {
