@@ -70,16 +70,16 @@
 	var REVERSE_CHECKBOX = "#reverseGravity";
 	var reverse = true;
 
-	var pipeTimer = null;
-	var hitting = false;
+	var _pipeTimer = null;
+	var _hitting = false;
 
 	// main loop to check octopus position and detect collision
 	var watchPos = function(){
-	    if(pipeTimer){
+	    if(_pipeTimer){
 	        window.requestAnimationFrame(watchPos);
 	        var res = detectCollision();
 	        if(!res){ return; }
-	        if(res.state === "HIT" && !hitting){
+	        if(res.state === "HIT" && !_hitting){
 	            // collision detected & game end
 	            end();
 	        }else if(res.state === "SUCCESS"){
@@ -170,12 +170,12 @@
 	var start = (function(){
 	    return function(){
 	        // no actions are allowed while game ending
-	        if(hitting){ return; }
-	        if(!pipeTimer){
+	        if(_hitting){ return; }
+	        if(!_pipeTimer){
 	            $(OCTOPUS_CLASS).css('bottom', ($(CANVAS_CLASS).height() / 2) + "px");
 	            $(PIPE_CLASS).remove();
 	            updateCount(0);
-	            pipeTimer = startPipeMove();
+	            _pipeTimer = startPipeMove();
 	            watchPos();
 	        }
 	        jump();
@@ -183,12 +183,12 @@
 	})();
 
 	var end = function(){
-	    hitting = true;
-	    clearInterval(pipeTimer);
-	    pipeTimer = null;
+	    _hitting = true;
+	    clearInterval(_pipeTimer);
+	    _pipeTimer = null;
 	    $(PIPE_CLASS).stop();
 	    fall().then(function(){
-	        hitting = false;
+	        _hitting = false;
 	    });
 	};
 
