@@ -6,7 +6,7 @@ html, body {
 }
 
 h2 {
-    margin: 24px 8px;
+    margin: 12px 8px;
 }
 
 .description {
@@ -16,7 +16,10 @@ h2 {
 
 .settings {
   text-align: center;
-  margin: 20px;  
+}
+
+.settings div {
+  margin: 8px;
 }
 
 .wrap {

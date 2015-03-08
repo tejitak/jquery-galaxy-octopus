@@ -51,7 +51,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	$ = __webpack_require__(2);
+	var $ = __webpack_require__(2);
 
 	// register requestAnimationFrame to global
 	(function (w, r) {
@@ -202,7 +202,6 @@
 	// settings
 	var updateSettings = function(){
 	    reverse = $(REVERSE_CHECKBOX).prop('checked');
-	    console.log(reverse);
 	};
 
 	$(".settings").on("click", function(e){

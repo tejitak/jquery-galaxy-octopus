@@ -149,7 +149,6 @@ $(window).on("click ", start).on("keydown", function(e){
 // settings
 var updateSettings = function(){
     reverse = $(REVERSE_CHECKBOX).prop('checked');
-    console.log(reverse);
 };
 
 $(".settings").on("click", function(e){
