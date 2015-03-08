@@ -150,13 +150,13 @@
 	        bottom: reverse ? canvasH - octopusH : 0
 	    }, totalFallTime, 'linear', function(){
 	        $dfd.resolve();
-	    }).css('transform', true ? '-' : '' + '90deg)');
+	    }).css('transform', 'rotate(' + (reverse ? '-' : '') + '90deg)');
 	    return $dfd;
 	};
 
 	var jump = function(){
 	    var $octopus = $(OCTOPUS_CLASS);
-	    $octopus.css('transform', true ? '' : '-' + '20deg)').stop().animate({
+	    $octopus.css('transform', 'rotate(' + (reverse ? '' : '-') + '20deg)').stop().animate({
 	        bottom: (reverse ? '-' : '+') + '=60px'
 	    }, 200, function(){
 	        $octopus.css('transform', 'rotate(0deg)').stop().animate({
@@ -172,7 +172,7 @@
 	        // no actions are allowed while game ending
 	        if(hitting){ return; }
 	        if(!pipeTimer){
-	            $(OCTOPUS_CLASS).css('bottom', '50%');
+	            $(OCTOPUS_CLASS).css('bottom', ($(CANVAS_CLASS).height() / 2) + "px");
 	            $(PIPE_CLASS).remove();
 	            updateCount(0);
 	            pipeTimer = startPipeMove();
@@ -192,8 +192,13 @@
 	    });
 	};
 
-	// listen click and space key
-	$(window).on("click ", start).on("keydown", function(e){
+	// listen tap & click and space key
+	$(CANVAS_CLASS).on("click touchstart", function(e){
+	    e.stopPropagation();
+	    e.preventDefault();
+	    start();
+	});
+	$(document).on("keydown", function(e){
 	    if(e.keyCode === 32){
 	        start();
 	    }
