@@ -77,7 +77,7 @@
 	var watchPos = function(){
 	    if(pipeTimer){
 	        window.requestAnimationFrame(watchPos);
-	        var res = detectCollistion();
+	        var res = detectCollision();
 	        if(!res){ return; }
 	        if(res.state === "HIT" && !hitting){
 	            // collision detected & game end
@@ -113,7 +113,7 @@
 	    $(COUNT_CLASS).text(count);
 	};
 
-	var detectCollistion = function(){
+	var detectCollision = function(){
 	    var $octopus = $(OCTOPUS_CLASS);
 	    if(parseInt($octopus.css('bottom')) === (reverse ? $(CANVAS_CLASS).height() - $octopus.height() : 0)){
 	        return {state: "HIT"};
