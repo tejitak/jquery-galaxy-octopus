@@ -1,10 +1,10 @@
 {
-  "name": "jquery-flappy",
+  "name": "jquery-galaxy-octopus",
   "version": "1.0.0",
   "description": "flappy bird with jQuery",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tejitak/jquery-flappy.git"
+    "url": "https://github.com/tejitak/jquery-galaxy-octopus.git"
   },
   "author": "tejitak",
   "license": "MIT",
