@@ -1,4 +1,4 @@
-# Galaxy Octopus with jQury  
+# Galaxy Octopus with jQuery  
 
 A simple game by JavaScript heavily inspired from Flappy Bird.  
 
