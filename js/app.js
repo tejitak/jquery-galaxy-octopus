@@ -14,8 +14,11 @@ var PIPE_INTERVAL = 1600;
 var GAP_HEIGHT = 120;
 
 // setting
-var REVERSE_CHECKBOX = "#reverseGravity";
 var reverse = true;
+var noHit = false;
+var REVERSE_CHECKBOX = "#reverseGravity";
+var PIPE_INTERVAL_INPUT = "#pipeIntervalInput";
+var NOHIT_CHECKBOX = "#noHit"
 
 var _pipeTimer = null;
 var _hitting = false;
@@ -25,7 +28,7 @@ var watchPos = function(){
     if(_pipeTimer){
         window.requestAnimationFrame(watchPos);
         var res = detectCollision();
-        if(!res){ return; }
+        if(!res || noHit){ return; }
         if(res.state === "HIT" && !_hitting){
             // collision detected & game end
             end();
@@ -154,6 +157,8 @@ $(document).on("keydown", function(e){
 // settings
 var updateSettings = function(){
     reverse = $(REVERSE_CHECKBOX).prop('checked');
+    PIPE_INTERVAL = $(PIPE_INTERVAL_INPUT).val();
+    noHit = $(NOHIT_CHECKBOX).prop('checked');
 };
 
 $(".settings").on("click", function(e){
@@ -165,4 +170,12 @@ $(".settings").on("click", function(e){
     }
     e.stopPropagation();
 });
+$(PIPE_INTERVAL_INPUT).on("change", function(){ 
+    updateSettings();
+    end();
+});
+
+// setup initial values
 $(REVERSE_CHECKBOX).prop('checked', reverse);
+$(PIPE_INTERVAL_INPUT).val(PIPE_INTERVAL);
+$(NOHIT_CHECKBOX).prop('checked', noHit);
